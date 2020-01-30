@@ -1,0 +1,49 @@
+label {
+	height: 100px;
+	width: 100px;
+	background-color: aqua;
+}
+
+.split {
+	height: 100%;
+	width: 50%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+  
+.left {
+	left: 0;
+}
+  
+.right {
+	right: 0;
+}
+
+.paper-preview {
+	min-width: 150px;
+	max-width: 150px;
+	min-height: 200px;
+	max-height: 200px;
+	background-color: ghostwhite;
+	overflow: hidden;
+	word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.create {
+	padding-left: 20px;
+}
+
+.selected-card {
+	min-width: 150px;
+	max-width: 150px;
+	min-height: 200px;
+	max-height: 200px;
+	background-color: powderblue;
+	overflow: hidden;
+	word-wrap: break-word;
+    white-space: pre-wrap;
+}

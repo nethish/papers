@@ -1,0 +1,16 @@
+.paper-editor-detail {
+	max-width: 530px;
+	background-color: lightblue;
+}
+
+.editor {
+	padding-left: 10px;
+}
+
+.text-area {
+	background-color: aquamarine;
+	border: 1px;
+	border-color: blue;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 20px;
+}

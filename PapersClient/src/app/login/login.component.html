@@ -1,0 +1,36 @@
+<div class="login">
+	<h1>Welcome to Papers</h1>
+	<mat-list>
+		<mat-grid-list cols="2" rowHeight="500">
+			<mat-grid-tile>
+				<mat-form-field>
+					<input matInput placeholder='Username' name="nameBox"  [(ngModel)]='username'>
+				</mat-form-field>
+				<br>
+				<mat-form-field>
+					<input matInput placeholder='Password' name="passBox"  type="password" [(ngModel)]='password'>
+				</mat-form-field>
+				<button mat-raised-button color="primary" (click)='checkLogin()'>
+					Login!
+					</button>
+				
+			</mat-grid-tile>
+			<mat-grid-tile>
+				<mat-form-field>
+					<input matInput placeholder='Username' name="nameBox"  [(ngModel)]='usernameRegister'>
+				</mat-form-field>
+				<br>
+				<mat-form-field>
+					<input matInput placeholder='Password' name="passBox" type = "password" [(ngModel)]='passwordRegister'>
+				</mat-form-field>
+				<button mat-raised-button color="primary" (click)='register()'>
+					Register!
+				  </button>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</mat-list>
+
+			
+		
+	  
+</div>

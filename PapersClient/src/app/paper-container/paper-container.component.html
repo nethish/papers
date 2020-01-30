@@ -1,0 +1,24 @@
+<div>
+	<div class = "split left">
+		<div>
+			<button class = "create" mat-raised-button color="primary" (click)='createPaper()'>+ New paper</button>
+			<button class = "create" mat-raised-button color="warn" (click)='deletePaper()'>Delete this paper</button>
+			<button class = "create" mat-stroked-button color="warn" (click)='logOut()'>Log out</button>
+		</div>
+		<mat-list>
+			<mat-grid-list cols="3" rowHeight="250">
+				<mat-grid-tile [colspan] = "1" [rowspan] = "1" *ngFor="let paper of papers">
+					<mat-card (click)='selectPaper(paper)' [class.paper-preview] = "selectedPaper != paper" [class.selected-card]="selectedPaper == paper">
+						<mat-card-title>{{ paper.title }}</mat-card-title>
+						<mat-card-subtitle> {{ paper.createdTime }}</mat-card-subtitle>
+						<mat-card-content> {{ paper.content | slice: 0: 100}} </mat-card-content>
+					</mat-card>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-list>
+	</div>
+	
+	<div class = "split right">
+		<app-paper [paper]='selectedPaper'></app-paper>
+	</div>	
+</div>

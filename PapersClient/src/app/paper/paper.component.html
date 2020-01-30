@@ -1,0 +1,19 @@
+
+<div class='editor' *ngIf="paper">
+	<form>
+		<mat-form-field>
+			<input matInput placeholder='Title' name="titleBox" value='{{paper.title}}' [(ngModel)]='paper.title'>
+		</mat-form-field>
+	</form>
+	<mat-card class = "paper-editor-detail">
+		<mat-subtitle>Created Time: {{ paper.createdTime }}</mat-subtitle>
+		<mat-subtitle>Last Modified: {{ paper.lastModified }}</mat-subtitle>
+	</mat-card>
+	<p></p>
+	<div>
+		<textarea name="contentBox" class = 'text-area' rows = '20' cols = '60' resize = 'none' [(ngModel)]='paper.content'></textarea>
+	</div>
+	<mat-divider></mat-divider>
+	<button mat-raised-button color="primary" (click)='saveContent()'>Save!</button>
+	<button mat-raised-button color="warn" (click)='resetContent()'>Reset!</button>
+</div>
