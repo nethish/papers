@@ -1,5 +1,6 @@
 package com.papers.PaperAPI.Authentication;
 
+import com.papers.PaperAPI.Crypto.Encrypt;
 import com.papers.PaperAPI.DataManager.Manager;
 import com.papers.PaperAPI.Models.JsonRequest;
 import com.papers.PaperAPI.Models.UserResponse;
@@ -30,7 +31,7 @@ public class UserAuthentication {
         if(!manager.verifyUser(username, password)) {
             return new UserResponse("");
         };
-        return new UserResponse(username);
+        return new UserResponse(Encrypt.encrypt(username));
     }
 
     @RequestMapping(path="/register", method = RequestMethod.POST)
@@ -38,7 +39,7 @@ public class UserAuthentication {
         String username = req.getUsername();
         String password = req.getPassword();
         if(manager.registerUser(username, password)) {
-            new UserResponse(username);
+            new UserResponse(Encrypt.encrypt(username));
         }
         return new UserResponse("");
     }

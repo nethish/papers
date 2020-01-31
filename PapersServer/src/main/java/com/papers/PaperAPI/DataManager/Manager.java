@@ -1,5 +1,6 @@
 package com.papers.PaperAPI.DataManager;
 
+import com.papers.PaperAPI.Crypto.Encrypt;
 import com.papers.PaperAPI.Exceptions.UserNotFoundException;
 import com.papers.PaperAPI.Models.Paper;
 import com.papers.PaperAPI.Models.User;
@@ -83,7 +84,7 @@ public class Manager implements Serializable {
         return getPapersByUserId(id);
     }
 
-    public User getUserByUsername(String username) throws IOException, ClassNotFoundException {
+    public User getUserByUsername(String username) {
         for(User u: this.users) {
             if (u.getUsername().equals(username)) return u;
         }
@@ -117,9 +118,7 @@ public class Manager implements Serializable {
     }
 
     public Boolean delete(long paperId) {
-        papers.removeIf(paper -> {
-            return (paper.getPaperId() == paperId);
-        });
+        papers.removeIf(paper -> (paper.getPaperId() == paperId));
         return true;
     }
 

@@ -17,18 +17,18 @@ export class AuathenticateLoginService {
 		papers.subscribe(data => {
 			this.update.emit(data);
 		})
-		
+
 	}
 
 	deletePaper(paper: Paper) {
-		return this.http.delete<Paper[]>(this.url + "delete?username=" + 
+		return this.http.delete<Paper[]>(this.url + "delete?username=" +
 			sessionStorage.getItem("username")+"&paperId=" + paper.paperId);
-		
+
 	}
 
 	createPaper() {
 		return this.http.put<Paper[]>(this.url + "new?username=" + sessionStorage.getItem("username"), {
-			
+
 		});
 	}
 
@@ -47,7 +47,7 @@ export class AuathenticateLoginService {
 		}).subscribe(o => {
 			sessionStorage.setItem("username", o.username);
 		});
-		if (sessionStorage.getItem("username") == username)
+		if (sessionStorage.getItem("username") != "")
 			return true;
 		return false;
   	}
@@ -58,14 +58,14 @@ export class AuathenticateLoginService {
 	}
 
 	register(username, password) {
-		let registerd = false;
+		let registered = false;
 		this.http.post(this.url + 'register', {
 			username: username,
 			password: password
 		}).subscribe(o => {
-			if (o) registerd = true;
+			if (o) registered = true;
 		});
-		return registerd;
+		return registered;
 	}
 
   	url: string = 'http://localhost:8080/';

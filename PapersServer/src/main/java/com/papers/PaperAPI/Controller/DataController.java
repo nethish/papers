@@ -1,8 +1,8 @@
 package com.papers.PaperAPI.Controller;
 
+import com.papers.PaperAPI.Crypto.Encrypt;
 import com.papers.PaperAPI.DataManager.Manager;
 import com.papers.PaperAPI.Exceptions.UserNotFoundException;
-import com.papers.PaperAPI.Models.JsonRequest;
 import com.papers.PaperAPI.Models.Paper;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +27,7 @@ public class DataController {
 
     @RequestMapping(value = "/papers", method = RequestMethod.GET)
     public List<Paper> getPapers(@RequestParam("username") String username) throws IOException, UserNotFoundException {
+        username = Encrypt.decrypt(username);
         if (!manager.isUser(username)) return new ArrayList();
         List<Paper> papers = manager.getPapersByUsername(username);
         return papers;
@@ -34,6 +35,7 @@ public class DataController {
 
     @RequestMapping(value = "/new", method = RequestMethod.PUT)
     public List<Paper> getNewPaper(@RequestParam("username") String username) throws UserNotFoundException, IOException {
+        username = Encrypt.decrypt(username);
         if(!manager.isUser(username)) new ArrayList();
         manager.getNewPaper("", username);
         return manager.getPapersByUsername(username);
@@ -41,7 +43,8 @@ public class DataController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public List<Paper> deletePaper(@RequestParam("username") String username, @RequestParam("paperId") long paperId) throws IOException, UserNotFoundException {
-        if (manager.isUser(username)){
+        username = Encrypt.decrypt(username);
+        if (manager.isUser(username)) {
             manager.delete(username, paperId);
             return manager.getPapersByUsername(username);
         }
@@ -50,6 +53,7 @@ public class DataController {
 
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public List<Paper> savePaper(@RequestParam("username") String username, @RequestBody Paper paper) throws IOException, UserNotFoundException {
+        username = Encrypt.decrypt(username);
         if (manager.isUser(username)){
             manager.savePaper(paper);
             return manager.getPapersByUsername(username);
